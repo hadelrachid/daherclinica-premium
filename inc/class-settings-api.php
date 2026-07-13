@@ -146,8 +146,10 @@ class SettingsAPI {
             <p>O XML-RPC está desativado nativamente no código para evitar ataques de força bruta, e cabeçalhos avançados de CSP (Content-Security-Policy) protegem contra injeção de scripts maliciosos.</p>
             
             <div style="margin-top: 40px; padding: 20px; background: #fff; border-left: 4px solid #1A365D; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
-                <h3>👨‍💻 Desenvolvido com carinho</h3>
-                <p>Feito sob medida para máxima performance no PageSpeed Insights.</p>
+                <h3>👨‍💻 Desenvolvedor</h3>
+                <p><strong>Desenvolvido por:</strong> Hadel Rachid Daher Junior</p>
+                <p>Feito sob medida com arquitetura "Zero Plugins" para máxima performance (100/100 no PageSpeed Insights) e conformidade WCAG.</p>
+                <p>🔗 <strong>GitHub:</strong> <a href="https://github.com/hadelrachid" target="_blank">https://github.com/hadelrachid</a></p>
             </div>
         </div>
         <?php
