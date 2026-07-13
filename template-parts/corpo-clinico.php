@@ -177,7 +177,7 @@ $whatsapp_geral = preg_replace('/[^0-9]/', '', $whatsapp_options['whatsapp_numbe
                     </div>
                     <div class="team-info-new">
                         <h3><?php _e('Dr. Marcelo de Azevedo Daher', 'daherclinica'); ?></h3>
-                        <span class="team-specialty-badge"><?php _e('Cirurgia Vascular', 'daherclinica'); ?></span>
+                        <span class="team-specialty-badge"><?php _e('Cirurgião Vascular', 'daherclinica'); ?></span>
                         <div class="team-crm"><?php _e('CRM 52 61207-0', 'daherclinica'); ?></div>
                         <p class="team-bio"><?php _e('Especialista em tratamentos avançados de varizes e check-up vascular.', 'daherclinica'); ?></p>
                         <a href="https://wa.me/<?php echo $whatsapp_geral; ?>" class="btn btn-primary btn-sm btn-whatsapp" target="_blank" aria-label="Agendar consulta pelo WhatsApp">

@@ -133,7 +133,7 @@ function daherclinica_add_schema_markup() {
                     "name" => "Dr. Marcelo de Azevedo Daher",
                     "medicalSpecialty" => [
                         "@type" => "MedicalSpecialty",
-                        "name" => "Angiologista e Cirurgião Vascular"
+                        "name" => "Cirurgião Vascular"
                     ]
                 ],
                 [
