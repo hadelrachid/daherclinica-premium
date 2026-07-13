@@ -8,15 +8,15 @@ Este é um tema WordPress customizado, projetado do zero com um foco implacável
 
 ---
 
-## 🚀 Destaques de Performance (PageSpeed: 98 Desktop / 85+ Mobile)
+## 🚀 Destaques de Performance (PageSpeed: 99 Desktop / 93 Mobile)
 
 Diferente de temas comerciais inchados, este projeto adota a filosofia *"Zero Plugins"*, onde toda a inteligência de otimização está embutida no núcleo do tema (functions/PHP).
 
+- **Google Maps Facade Pattern:** Substituição inteligente do Iframe pesado do Maps por um placeholder estático, poupando quase 500KB de JavaScript inútil no carregamento inicial da página de Contato. O mapa real só é injetado sob demanda (interação do usuário).
+- **Fontes 100% Locais & Preload:** Google Fonts eliminadas como dependência externa de renderização. Fontes convertidas em `.woff2`, chamadas nativamente via `@font-face (swap)` com `<link rel="preload">` inserido no Head, mitigando o Flash of Unstyled Content (FOUC) sem travar a thread principal.
 - **Cache Busting Dinâmico:** Versionamento de arquivos CSS e JS usando `filemtime()`. Elimina problemas de cache do lado do cliente, forçando a renovação automática de assets.
-- **Resource Hints Avançados:** Deduplicação inteligente de `<link rel="preconnect">` no cabeçalho.
-- **Fontes Assíncronas:** Carregamento otimizado de ícones pesados (Font Awesome) utilizando o truque `media="print"` para evitar bloqueio de renderização (Render-Blocking).
-- **Scripts em Defer Seguro:** Filtro nativo no `script_loader_tag` que adia o carregamento de JavaScript não-crítico.
-- **Imagens WebP & Tamanhos Responsivos:** Régua de cortes personalizadas para o uploader do WordPress, forçando compressão nativa e servindo imagens precisas (reduzindo absurdamente o LCP).
+- **Scripts em Defer Seguro:** Filtro nativo que adia o carregamento de JavaScript e CSS auxiliares.
+- **Imagens WebP & Tamanhos Responsivos Dinâmicos:** As tags nativas de imagem agora utilizam o motor `wp_get_attachment_image()` do WordPress para gerar automaticamente os tamanhos corretos via `srcset` na Viewport, além da exigência estrita de atributos `width` e `height` para zerar o Cumulative Layout Shift (CLS). Imagens pesadas de fundo passaram por processamento em script Python (LANCZOS resampling) limitando a dimensão máxima (2x Viewport).
 
 ## 🛡️ Segurança e Privacidade
 

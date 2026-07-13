@@ -6,45 +6,12 @@
 │   │   ├── 🎨 editor-style.css
 │   │   ├── 🎨 main.css
 │   │   └── 🎨 main.min.css
+│   ├── 📁 fonts/
+│   │   ├── 📄 inter.woff2
+│   │   └── 📄 playfair.woff2
 │   ├── 📁 images/
-│   │   ├── 📁 images-modelo/
-│   │   │   └── 📁 images-modelo/
-│   │   │       ├── 📁 jpg/
-│   │   │       │   ├── 🖼️ dermatologia.jpg
-│   │   │       │   └── 🖼️ vascular.jpg
-│   │   │       ├── 📁 png/
-│   │   │       │   ├── 📁 modelos/
-│   │   │       │   │   ├── 🖼️ bg-pattern-d.png
-│   │   │       │   │   ├── 🖼️ blog-hero-mob.png
-│   │   │       │   │   ├── 🖼️ blog-hero.png
-│   │   │       │   │   ├── 🖼️ blog-placeholder.png
-│   │   │       │   │   ├── 🖼️ card.png
-│   │   │       │   │   ├── 🖼️ consultorio.png
-│   │   │       │   │   ├── 🖼️ hero-02.png
-│   │   │       │   │   ├── 🖼️ hero-mob.png
-│   │   │       │   │   ├── 🖼️ hero-mob.webp
-│   │   │       │   │   └── 🖼️ hero.png
-│   │   │       │   ├── 🖼️ dermatologia.png
-│   │   │       │   ├── 🖼️ favicon.ico
-│   │   │       │   ├── 🖼️ logo.png
-│   │   │       │   ├── 🖼️ medico-placeholder.png
-│   │   │       │   ├── 📄 medico-placeholder.xcf
-│   │   │       │   ├── 🖼️ medico1.png
-│   │   │       │   ├── 🖼️ medico2.png
-│   │   │       │   ├── 🖼️ medico3.jpeg
-│   │   │       │   ├── 🖼️ medico3.png
-│   │   │       │   ├── 🖼️ medico3.webp
-│   │   │       │   ├── 📄 og-default.zip
-│   │   │       │   ├── 🖼️ vascular.jpg
-│   │   │       │   └── 🖼️ vascular.png
-│   │   │       └── 📁 webp/
-│   │   │           ├── 🖼️ dermatologia.webp
-│   │   │           ├── 🖼️ hero.webp
-│   │   │           ├── 🖼️ medico1.webp
-│   │   │           ├── 🖼️ medico2.webp
-│   │   │           ├── 🖼️ medico3.webp
-│   │   │           └── 🖼️ vascular.webp
 │   │   ├── 🖼️ bg-pattern-d.png
+│   │   ├── 🖼️ bg-pattern-d.webp
 │   │   ├── 🖼️ blog-hero-mob.webp
 │   │   ├── 🖼️ blog-hero.webp
 │   │   ├── 🖼️ blog-placeholder.webp
@@ -83,8 +50,8 @@
 │   ├── 🐘 especialidades.php
 │   ├── 🐘 hero.php
 │   └── 🐘 sobre.php
+├── 📄 .gitignore
 ├── 🐘 comments.php
-├── 📄 daherclinica-premium.zip
 ├── 🐘 footer.php
 ├── 🐘 front-page.php
 ├── 🐘 functions.php
@@ -565,6 +532,9 @@ add_filter('wp_sitemaps_add_provider', function ($provider, $name) {
     <meta name="twitter:description" content="<?php echo esc_attr(trim($description)); ?>">
     <meta name="twitter:image" content="<?php echo esc_url($og_image); ?>">
     
+    <link rel="preload" href="<?php echo get_template_directory_uri(); ?>/assets/fonts/inter.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="<?php echo get_template_directory_uri(); ?>/assets/fonts/playfair.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="<?php echo get_template_directory_uri(); ?>/assets/css/main.min.css" as="style">
 
     <?php wp_head(); ?>
 </head>
@@ -584,7 +554,7 @@ add_filter('wp_sitemaps_add_provider', function ($provider, $name) {
                     ? esc_url($media_options['logo_principal']) 
                     : get_template_directory_uri() . '/assets/images/logo.png';
                 ?>
-                <img src="<?php echo $logo_principal; ?>" alt="" class="logo-img">
+                <img src="<?php echo $logo_principal; ?>" alt="" class="logo-img" width="120" height="135">
                 <span class="logo-text">Daher <span class="accent">Clínica</span></span>
             </a>
             
@@ -620,6 +590,7 @@ add_filter('wp_sitemaps_add_provider', function ($provider, $name) {
                 <a href="<?php echo esc_url(home_url('/#agendamento')); ?>" 
                    class="mobile-btn-agendar" 
                    id="mobileAgendarBtn"
+                   aria-label="Agendar consulta pelo menu"
                    data-home-url="<?php echo esc_url(home_url('/')); ?>">
                     <i class="fas fa-calendar-alt"></i>
                     <span><?php _e('Agendar Consulta', 'daherclinica'); ?></span>
@@ -671,7 +642,7 @@ add_filter('wp_sitemaps_add_provider', function ($provider, $name) {
                 <div class="footer-grid">
                     <div class="footer-brand">
                         <a href="<?php echo esc_url(home_url('/')); ?>" class="footer-logo">
-                            <img src="<?php echo get_template_directory_uri(); ?>/assets/images/logo.png" alt="" class="footer-logo-img">
+                            <img src="<?php echo get_template_directory_uri(); ?>/assets/images/logo.png" alt="" class="footer-logo-img" width="120" height="135">
                             <span class="footer-logo-text">Daher <span class="accent">Clínica</span></span>
                         </a>
                         <p><?php _e('Excelência médica, tecnologia avançada e cuidados que realçam sua saúde e autoestima.', 'daherclinica'); ?></p>
@@ -2014,13 +1985,12 @@ class DaherClinica_Assets {
     }
     
     public function enqueue_styles() {
-        // 1. Recursos Externos
-        wp_enqueue_style('daherclinica-fonts', 'https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Playfair+Display:wght@400;500;600;700;800&display=swap', [], null);
+        // 1. Recursos Externos (Google Fonts removido para hospedagem local)
         
         // Font Awesome Assíncrono (Carrega como 'print' e muda para 'all' no client-side)
         wp_enqueue_style('daherclinica-fontawesome', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css', [], '6.5.1', 'print');
 
-        // 2. CSS Principal (sempre carrega)
+        // 2. CSS Principal (sempre carrega) - Retornado ao modo síncrono para evitar FOUC
         wp_enqueue_style(
             'daherclinica-main',
             get_template_directory_uri() . '/assets/css/main.min.css',
@@ -2044,9 +2014,9 @@ class DaherClinica_Assets {
         wp_enqueue_script(
             'daherclinica-main',
             get_template_directory_uri() . '/assets/js/main.min.js',
-            [], // Sem dependências: o main.js usa Vanilla JS puro
+            [], // Sem dependências
             defined('DAHER_THEME_VERSION') ? DAHER_THEME_VERSION : '1.0.0',
-            true
+            ['in_footer' => true, 'strategy' => 'defer']
         );
 
         // 2. JS do Blog (apenas nas páginas de blog)
@@ -2079,8 +2049,8 @@ class DaherClinica_Assets {
 new DaherClinica_Assets();
 
 /**
- * Script inline para ativar o FontAwesome após o carregamento da página
- * Isso remove o bloqueio de renderização (FCP) causado pelo all.min.css
+ * Script inline para ativar o CSS assíncrono (FontAwesome) após o carregamento da página
+ * Isso remove o bloqueio de renderização (FCP) causado por fontes pesadas de ícones
  */
 add_action('wp_head', function() {
     echo "<script>
@@ -4832,26 +4802,51 @@ if (!defined('ABSPATH')) {
                     </div>
                 </div>
 
-                <div class="contact-map">
-                    <?php if (!empty($map_options['map_iframe'])) : ?>
-                        <?php 
-                        // Injeta title no iframe se não houver
-                        $iframe = $map_options['map_iframe'];
-                        if (strpos($iframe, 'title=') === false) {
-                            $iframe = str_replace('<iframe ', '<iframe title="Mapa de localização da Clínica" ', $iframe);
-                        }
-                        echo $iframe; 
-                        ?>
-                    <?php else : ?>
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3673.3408103696943!2d-43.4165382!3d-22.9744918!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9bdc0c2c727431%3A0x62dff47d2403862f!2sShopping%20Map%20Band!5e0!3m2!1spt-BR!2sbr!4v1775526662430!5m2!1spt-BR!2sbr" 
-                                title="Mapa de localização da Clínica"
-                                width="100%" 
-                                height="250" 
-                                style="border:0; border-radius: 12px;" 
-                                allowfullscreen="" 
-                                loading="lazy"></iframe>
-                    <?php endif; ?>
+                <div class="contact-map map-facade-container" style="position: relative; width: 100%; height: 250px; background: #e0e0e0; border-radius: 12px; display: flex; align-items: center; justify-content: center; cursor: pointer; border: 1px solid #ccc;">
+                    <div class="map-facade-overlay" style="text-align: center;">
+                        <i class="fas fa-map-marker-alt" style="font-size: 2rem; color: var(--primary); margin-bottom: 10px;"></i>
+                        <p style="margin:0; font-weight: 500;">Clique para carregar o mapa interativo</p>
+                        <small style="color: #666;">(Otimizado para economia de dados)</small>
+                    </div>
+                    <template id="googleMapTemplate">
+                        <?php if (!empty($map_options['map_iframe'])) : ?>
+                            <?php 
+                            // Injeta title no iframe se não houver
+                            $iframe = $map_options['map_iframe'];
+                            if (strpos($iframe, 'title=') === false) {
+                                $iframe = str_replace('<iframe ', '<iframe title="Mapa de localização da Clínica" ', $iframe);
+                            }
+                            if (strpos($iframe, 'height=') !== false) {
+                                $iframe = preg_replace('/height="[^"]+"/', 'height="100%"', $iframe);
+                            } else {
+                                $iframe = str_replace('<iframe ', '<iframe height="100%" ', $iframe);
+                            }
+                            echo $iframe; 
+                            ?>
+                        <?php else : ?>
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3673.3408103696943!2d-43.4165382!3d-22.9744918!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9bdc0c2c727431%3A0x62dff47d2403862f!2sShopping%20Map%20Band!5e0!3m2!1spt-BR!2sbr!4v1775526662430!5m2!1spt-BR!2sbr" 
+                                    title="Mapa de localização da Clínica"
+                                    width="100%" 
+                                    height="100%" 
+                                    style="border:0; border-radius: 12px;" 
+                                    allowfullscreen="" 
+                                    loading="lazy"></iframe>
+                        <?php endif; ?>
+                    </template>
                 </div>
+                <script>
+                    document.addEventListener('DOMContentLoaded', function() {
+                        var facade = document.querySelector('.map-facade-container');
+                        if (facade) {
+                            facade.addEventListener('click', function() {
+                                var tpl = document.getElementById('googleMapTemplate');
+                                if (tpl) {
+                                    this.innerHTML = tpl.innerHTML;
+                                }
+                            }, {once: true});
+                        }
+                    });
+                </script>
             </div>
 
             <div class="contact-form-wrapper" id="agendamento">
@@ -4984,7 +4979,14 @@ $whatsapp_geral = preg_replace('/[^0-9]/', '', $whatsapp_options['whatsapp_numbe
             ?>
                 <div class="team-card-new">
                     <div class="team-image-wrap">
-                        <img src="<?php echo esc_url($foto); ?>" alt="<?php echo esc_attr($nome); ?>" class="team-img" width="400" height="400" loading="lazy">
+                        <?php 
+                        $foto_id = attachment_url_to_postid($foto);
+                        if ($foto_id) {
+                            echo wp_get_attachment_image($foto_id, 'medico-large', false, ['class' => 'team-img', 'loading' => 'lazy']);
+                        } else {
+                            echo '<img src="' . esc_url($foto) . '" alt="' . esc_attr($nome) . '" class="team-img" width="400" height="400" loading="lazy">';
+                        }
+                        ?>
                         <?php if (!empty($medico['instagram'])) : ?>
                             <div class="team-overlay">
                                 <div class="team-social-links">
@@ -5024,7 +5026,7 @@ $whatsapp_geral = preg_replace('/[^0-9]/', '', $whatsapp_options['whatsapp_numbe
                         </div>
                         
                         <div class="team-info-footer">
-                            <a href="<?php echo esc_url($whatsapp_link); ?>" class="btn btn-primary btn-sm btn-whatsapp" target="_blank" rel="noopener noreferrer">
+                            <a href="<?php echo esc_url($whatsapp_link); ?>" class="btn btn-primary btn-sm btn-whatsapp" target="_blank" rel="noopener noreferrer" aria-label="Agendar consulta pelo WhatsApp">
                                 <?php _e('Agendar Consulta', 'daherclinica'); ?>
                             </a>
                         </div>
@@ -5045,7 +5047,13 @@ $whatsapp_geral = preg_replace('/[^0-9]/', '', $whatsapp_options['whatsapp_numbe
             ?>
                 <div class="team-card-new">
                     <div class="team-image-wrap">
-                        <img src="<?php echo esc_url($foto); ?>" alt="<?php the_title_attribute(); ?>" class="team-img" width="400" height="400" loading="lazy">
+                        <?php 
+                        if (has_post_thumbnail()) {
+                            the_post_thumbnail('medico-large', ['class' => 'team-img', 'loading' => 'lazy']);
+                        } else {
+                            echo '<img src="' . esc_url($foto) . '" alt="' . the_title_attribute(['echo' => false]) . '" class="team-img" width="400" height="400" loading="lazy">';
+                        }
+                        ?>
                     </div>
                     <div class="team-info-new">
                         <div class="team-info-header">
@@ -5061,7 +5069,7 @@ $whatsapp_geral = preg_replace('/[^0-9]/', '', $whatsapp_options['whatsapp_numbe
                         </div>
                         
                         <div class="team-info-footer">
-                            <a href="<?php echo esc_url($whatsapp_link); ?>" class="btn btn-primary btn-sm btn-whatsapp" target="_blank" rel="noopener noreferrer">
+                            <a href="<?php echo esc_url($whatsapp_link); ?>" class="btn btn-primary btn-sm btn-whatsapp" target="_blank" rel="noopener noreferrer" aria-label="Agendar consulta pelo WhatsApp">
                                 <?php _e('Agendar Consulta', 'daherclinica'); ?>
                             </a>
                         </div>
@@ -5084,7 +5092,7 @@ $whatsapp_geral = preg_replace('/[^0-9]/', '', $whatsapp_options['whatsapp_numbe
                         <span class="team-specialty-badge"><?php _e('Cirurgia Vascular', 'daherclinica'); ?></span>
                         <div class="team-crm"><?php _e('CRM 52 61207-0', 'daherclinica'); ?></div>
                         <p class="team-bio"><?php _e('Especialista em tratamentos avançados de varizes e check-up vascular.', 'daherclinica'); ?></p>
-                        <a href="https://wa.me/<?php echo $whatsapp_geral; ?>" class="btn btn-primary btn-sm btn-whatsapp" target="_blank">
+                        <a href="https://wa.me/<?php echo $whatsapp_geral; ?>" class="btn btn-primary btn-sm btn-whatsapp" target="_blank" aria-label="Agendar consulta pelo WhatsApp">
                             <?php _e('Agendar Consulta', 'daherclinica'); ?>
                         </a>
                     </div>
@@ -6783,6 +6791,25 @@ h1, h2, h3, h4, h5, h6 {
    ============================================================ */
 
 /* ------------------------------------------------------------
+   0. FONTES (Carregamento Local)
+   ------------------------------------------------------------ */
+@font-face {
+    font-family: 'Inter';
+    src: url('../fonts/inter.woff2') format('woff2');
+    font-weight: 300 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Playfair Display';
+    src: url('../fonts/playfair.woff2') format('woff2');
+    font-weight: 400 800;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* ------------------------------------------------------------
    1. VARIÁVEIS CSS (Design Tokens)
    ------------------------------------------------------------ */
 :root {
@@ -8385,8 +8412,8 @@ section[id] {
 .doctor-tag {
     background-color: #E0F2F1 !important;
     /* Ciano clarinho */
-    color: #00838F !important;
-    /* Ciano escuro */
+    color: #006064 !important;
+    /* Ciano escuro - Acessibilidade AA */
     padding: 6px 14px !important;
     border-radius: 100px !important;
     font-size: 0.85rem !important;
@@ -8400,7 +8427,8 @@ section[id] {
 .doctor-tag:hover {
     background-color: #C5A880 !important;
     /* Dourado */
-    color: #ffffff !important;
+    color: #0F2440 !important;
+    /* Azul escuro - Acessibilidade AA */
 }
 
 /* Footer do Card e Botão */

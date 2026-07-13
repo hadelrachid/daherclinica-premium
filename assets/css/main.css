@@ -4,6 +4,25 @@
    ============================================================ */
 
 /* ------------------------------------------------------------
+   0. FONTES (Carregamento Local)
+   ------------------------------------------------------------ */
+@font-face {
+    font-family: 'Inter';
+    src: url('../fonts/inter.woff2') format('woff2');
+    font-weight: 300 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Playfair Display';
+    src: url('../fonts/playfair.woff2') format('woff2');
+    font-weight: 400 800;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* ------------------------------------------------------------
    1. VARIÁVEIS CSS (Design Tokens)
    ------------------------------------------------------------ */
 :root {
@@ -1606,8 +1625,8 @@ section[id] {
 .doctor-tag {
     background-color: #E0F2F1 !important;
     /* Ciano clarinho */
-    color: #00838F !important;
-    /* Ciano escuro */
+    color: #006064 !important;
+    /* Ciano escuro - Acessibilidade AA */
     padding: 6px 14px !important;
     border-radius: 100px !important;
     font-size: 0.85rem !important;
@@ -1621,7 +1640,8 @@ section[id] {
 .doctor-tag:hover {
     background-color: #C5A880 !important;
     /* Dourado */
-    color: #ffffff !important;
+    color: #0F2440 !important;
+    /* Azul escuro - Acessibilidade AA */
 }
 
 /* Footer do Card e Botão */

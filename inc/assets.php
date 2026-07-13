@@ -19,13 +19,12 @@ class DaherClinica_Assets {
     }
     
     public function enqueue_styles() {
-        // 1. Recursos Externos
-        wp_enqueue_style('daherclinica-fonts', 'https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Playfair+Display:wght@400;500;600;700;800&display=swap', [], null);
+        // 1. Recursos Externos (Google Fonts removido para hospedagem local)
         
         // Font Awesome Assíncrono (Carrega como 'print' e muda para 'all' no client-side)
         wp_enqueue_style('daherclinica-fontawesome', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css', [], '6.5.1', 'print');
 
-        // 2. CSS Principal (sempre carrega)
+        // 2. CSS Principal (sempre carrega) - Retornado ao modo síncrono para evitar FOUC
         wp_enqueue_style(
             'daherclinica-main',
             get_template_directory_uri() . '/assets/css/main.min.css',
@@ -49,9 +48,9 @@ class DaherClinica_Assets {
         wp_enqueue_script(
             'daherclinica-main',
             get_template_directory_uri() . '/assets/js/main.min.js',
-            [], // Sem dependências: o main.js usa Vanilla JS puro
+            [], // Sem dependências
             defined('DAHER_THEME_VERSION') ? DAHER_THEME_VERSION : '1.0.0',
-            true
+            ['in_footer' => true, 'strategy' => 'defer']
         );
 
         // 2. JS do Blog (apenas nas páginas de blog)
@@ -84,8 +83,8 @@ class DaherClinica_Assets {
 new DaherClinica_Assets();
 
 /**
- * Script inline para ativar o FontAwesome após o carregamento da página
- * Isso remove o bloqueio de renderização (FCP) causado pelo all.min.css
+ * Script inline para ativar o CSS assíncrono (FontAwesome) após o carregamento da página
+ * Isso remove o bloqueio de renderização (FCP) causado por fontes pesadas de ícones
  */
 add_action('wp_head', function() {
     echo "<script>

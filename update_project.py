@@ -104,15 +104,27 @@ def update_project():
         
     print(f"Iniciando compactação segura para {project_name}.zip...")
     
-    # Passo B: Criar o zip em uma pasta temporária isolada do Windows
-    # Isso impede absolutamente que o zip "tente engolir a si mesmo" enquanto é criado
+    # Passo B: Criar o zip em uma pasta temporária filtrando arquivos indesejados
+    import zipfile
     temp_dir = tempfile.gettempdir()
-    temp_zip_base = os.path.join(temp_dir, project_name)
+    temp_zip_base = os.path.join(temp_dir, f"{project_name}.zip")
     
-    shutil.make_archive(temp_zip_base, 'zip', project_path)
+    ignore_for_zip = ['.git', '.gitignore', '.vscode', '__pycache__', 'update_project.py', 'project.txt', f"{project_name}.zip"]
+    
+    with zipfile.ZipFile(temp_zip_base, 'w', zipfile.ZIP_DEFLATED) as zipf:
+        for root, dirs, files in os.walk(project_path):
+            # Filtra diretórios para não entrar neles
+            dirs[:] = [d for d in dirs if d not in ignore_for_zip]
+            
+            for file in files:
+                if file in ignore_for_zip or file.endswith('.zip'):
+                    continue
+                file_path = os.path.join(root, file)
+                arcname = os.path.relpath(file_path, project_path)
+                zipf.write(file_path, arcname)
     
     # Passo C: Mover o zip finalizado de volta para a pasta do projeto
-    shutil.move(temp_zip_base + '.zip', full_zip_path)
+    shutil.move(temp_zip_base, full_zip_path)
     
     print(f"Projeto compactado com sucesso em: {full_zip_path}")
 

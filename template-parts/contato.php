@@ -65,26 +65,51 @@ if (!defined('ABSPATH')) {
                     </div>
                 </div>
 
-                <div class="contact-map">
-                    <?php if (!empty($map_options['map_iframe'])) : ?>
-                        <?php 
-                        // Injeta title no iframe se não houver
-                        $iframe = $map_options['map_iframe'];
-                        if (strpos($iframe, 'title=') === false) {
-                            $iframe = str_replace('<iframe ', '<iframe title="Mapa de localização da Clínica" ', $iframe);
-                        }
-                        echo $iframe; 
-                        ?>
-                    <?php else : ?>
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3673.3408103696943!2d-43.4165382!3d-22.9744918!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9bdc0c2c727431%3A0x62dff47d2403862f!2sShopping%20Map%20Band!5e0!3m2!1spt-BR!2sbr!4v1775526662430!5m2!1spt-BR!2sbr" 
-                                title="Mapa de localização da Clínica"
-                                width="100%" 
-                                height="250" 
-                                style="border:0; border-radius: 12px;" 
-                                allowfullscreen="" 
-                                loading="lazy"></iframe>
-                    <?php endif; ?>
+                <div class="contact-map map-facade-container" style="position: relative; width: 100%; height: 250px; background: #e0e0e0; border-radius: 12px; display: flex; align-items: center; justify-content: center; cursor: pointer; border: 1px solid #ccc;">
+                    <div class="map-facade-overlay" style="text-align: center;">
+                        <i class="fas fa-map-marker-alt" style="font-size: 2rem; color: var(--primary); margin-bottom: 10px;"></i>
+                        <p style="margin:0; font-weight: 500;">Clique para carregar o mapa interativo</p>
+                        <small style="color: #666;">(Otimizado para economia de dados)</small>
+                    </div>
+                    <template id="googleMapTemplate">
+                        <?php if (!empty($map_options['map_iframe'])) : ?>
+                            <?php 
+                            // Injeta title no iframe se não houver
+                            $iframe = $map_options['map_iframe'];
+                            if (strpos($iframe, 'title=') === false) {
+                                $iframe = str_replace('<iframe ', '<iframe title="Mapa de localização da Clínica" ', $iframe);
+                            }
+                            if (strpos($iframe, 'height=') !== false) {
+                                $iframe = preg_replace('/height="[^"]+"/', 'height="100%"', $iframe);
+                            } else {
+                                $iframe = str_replace('<iframe ', '<iframe height="100%" ', $iframe);
+                            }
+                            echo $iframe; 
+                            ?>
+                        <?php else : ?>
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3673.3408103696943!2d-43.4165382!3d-22.9744918!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9bdc0c2c727431%3A0x62dff47d2403862f!2sShopping%20Map%20Band!5e0!3m2!1spt-BR!2sbr!4v1775526662430!5m2!1spt-BR!2sbr" 
+                                    title="Mapa de localização da Clínica"
+                                    width="100%" 
+                                    height="100%" 
+                                    style="border:0; border-radius: 12px;" 
+                                    allowfullscreen="" 
+                                    loading="lazy"></iframe>
+                        <?php endif; ?>
+                    </template>
                 </div>
+                <script>
+                    document.addEventListener('DOMContentLoaded', function() {
+                        var facade = document.querySelector('.map-facade-container');
+                        if (facade) {
+                            facade.addEventListener('click', function() {
+                                var tpl = document.getElementById('googleMapTemplate');
+                                if (tpl) {
+                                    this.innerHTML = tpl.innerHTML;
+                                }
+                            }, {once: true});
+                        }
+                    });
+                </script>
             </div>
 
             <div class="contact-form-wrapper" id="agendamento">

@@ -67,7 +67,14 @@ $whatsapp_geral = preg_replace('/[^0-9]/', '', $whatsapp_options['whatsapp_numbe
             ?>
                 <div class="team-card-new">
                     <div class="team-image-wrap">
-                        <img src="<?php echo esc_url($foto); ?>" alt="<?php echo esc_attr($nome); ?>" class="team-img" width="400" height="400" loading="lazy">
+                        <?php 
+                        $foto_id = attachment_url_to_postid($foto);
+                        if ($foto_id) {
+                            echo wp_get_attachment_image($foto_id, 'medico-large', false, ['class' => 'team-img', 'loading' => 'lazy']);
+                        } else {
+                            echo '<img src="' . esc_url($foto) . '" alt="' . esc_attr($nome) . '" class="team-img" width="400" height="400" loading="lazy">';
+                        }
+                        ?>
                         <?php if (!empty($medico['instagram'])) : ?>
                             <div class="team-overlay">
                                 <div class="team-social-links">
@@ -107,7 +114,7 @@ $whatsapp_geral = preg_replace('/[^0-9]/', '', $whatsapp_options['whatsapp_numbe
                         </div>
                         
                         <div class="team-info-footer">
-                            <a href="<?php echo esc_url($whatsapp_link); ?>" class="btn btn-primary btn-sm btn-whatsapp" target="_blank" rel="noopener noreferrer">
+                            <a href="<?php echo esc_url($whatsapp_link); ?>" class="btn btn-primary btn-sm btn-whatsapp" target="_blank" rel="noopener noreferrer" aria-label="Agendar consulta pelo WhatsApp">
                                 <?php _e('Agendar Consulta', 'daherclinica'); ?>
                             </a>
                         </div>
@@ -128,7 +135,13 @@ $whatsapp_geral = preg_replace('/[^0-9]/', '', $whatsapp_options['whatsapp_numbe
             ?>
                 <div class="team-card-new">
                     <div class="team-image-wrap">
-                        <img src="<?php echo esc_url($foto); ?>" alt="<?php the_title_attribute(); ?>" class="team-img" width="400" height="400" loading="lazy">
+                        <?php 
+                        if (has_post_thumbnail()) {
+                            the_post_thumbnail('medico-large', ['class' => 'team-img', 'loading' => 'lazy']);
+                        } else {
+                            echo '<img src="' . esc_url($foto) . '" alt="' . the_title_attribute(['echo' => false]) . '" class="team-img" width="400" height="400" loading="lazy">';
+                        }
+                        ?>
                     </div>
                     <div class="team-info-new">
                         <div class="team-info-header">
@@ -144,7 +157,7 @@ $whatsapp_geral = preg_replace('/[^0-9]/', '', $whatsapp_options['whatsapp_numbe
                         </div>
                         
                         <div class="team-info-footer">
-                            <a href="<?php echo esc_url($whatsapp_link); ?>" class="btn btn-primary btn-sm btn-whatsapp" target="_blank" rel="noopener noreferrer">
+                            <a href="<?php echo esc_url($whatsapp_link); ?>" class="btn btn-primary btn-sm btn-whatsapp" target="_blank" rel="noopener noreferrer" aria-label="Agendar consulta pelo WhatsApp">
                                 <?php _e('Agendar Consulta', 'daherclinica'); ?>
                             </a>
                         </div>
@@ -167,7 +180,7 @@ $whatsapp_geral = preg_replace('/[^0-9]/', '', $whatsapp_options['whatsapp_numbe
                         <span class="team-specialty-badge"><?php _e('Cirurgia Vascular', 'daherclinica'); ?></span>
                         <div class="team-crm"><?php _e('CRM 52 61207-0', 'daherclinica'); ?></div>
                         <p class="team-bio"><?php _e('Especialista em tratamentos avançados de varizes e check-up vascular.', 'daherclinica'); ?></p>
-                        <a href="https://wa.me/<?php echo $whatsapp_geral; ?>" class="btn btn-primary btn-sm btn-whatsapp" target="_blank">
+                        <a href="https://wa.me/<?php echo $whatsapp_geral; ?>" class="btn btn-primary btn-sm btn-whatsapp" target="_blank" aria-label="Agendar consulta pelo WhatsApp">
                             <?php _e('Agendar Consulta', 'daherclinica'); ?>
                         </a>
                     </div>

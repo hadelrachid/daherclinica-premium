@@ -96,6 +96,9 @@
     <meta name="twitter:description" content="<?php echo esc_attr(trim($description)); ?>">
     <meta name="twitter:image" content="<?php echo esc_url($og_image); ?>">
     
+    <link rel="preload" href="<?php echo get_template_directory_uri(); ?>/assets/fonts/inter.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="<?php echo get_template_directory_uri(); ?>/assets/fonts/playfair.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="<?php echo get_template_directory_uri(); ?>/assets/css/main.min.css" as="style">
 
     <?php wp_head(); ?>
 </head>
@@ -115,7 +118,7 @@
                     ? esc_url($media_options['logo_principal']) 
                     : get_template_directory_uri() . '/assets/images/logo.png';
                 ?>
-                <img src="<?php echo $logo_principal; ?>" alt="" class="logo-img">
+                <img src="<?php echo $logo_principal; ?>" alt="" class="logo-img" width="120" height="135">
                 <span class="logo-text">Daher <span class="accent">Clínica</span></span>
             </a>
             
@@ -151,6 +154,7 @@
                 <a href="<?php echo esc_url(home_url('/#agendamento')); ?>" 
                    class="mobile-btn-agendar" 
                    id="mobileAgendarBtn"
+                   aria-label="Agendar consulta pelo menu"
                    data-home-url="<?php echo esc_url(home_url('/')); ?>">
                     <i class="fas fa-calendar-alt"></i>
                     <span><?php _e('Agendar Consulta', 'daherclinica'); ?></span>
