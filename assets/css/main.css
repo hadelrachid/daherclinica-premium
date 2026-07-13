@@ -1595,12 +1595,6 @@ section[id] {
     line-height: 1.7;
     color: #475569;
     margin-bottom: 1.5rem;
-    min-height: 72px;
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    line-clamp: 3;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
 }
 
 /* Expertise Tags */
@@ -3079,12 +3073,6 @@ section[id] {
 
 /* Bio - altura fixa para 3 linhas */
 .team-bio {
-    min-height: 72px;
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    line-clamp: 3;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
     margin-bottom: 1rem;
 }
 

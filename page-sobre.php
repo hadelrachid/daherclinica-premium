@@ -305,8 +305,8 @@ $especialidades_url = esc_url(home_url('/especialidades'));
                                 <?php 
                                 $insta_url = !empty($medico['instagram']) ? $medico['instagram'] : "https://www.instagram.com/daherclinica/";
                                 ?>
-                                <a href="<?php echo esc_url($insta_url); ?>" target="_blank" class="social-icon"><i class="fab fa-instagram"></i></a>
-                                <a href="<?php echo esc_url($whatsapp_link); ?>" target="_blank" class="social-icon"><i class="fab fa-whatsapp"></i></a>
+                                <a href="<?php echo esc_url($insta_url); ?>" target="_blank" class="team-social-btn"><i class="fab fa-instagram"></i></a>
+                                <a href="<?php echo esc_url($whatsapp_link); ?>" target="_blank" class="team-social-btn"><i class="fab fa-whatsapp"></i></a>
                             </div>
                         </div>
                     </div>
@@ -340,8 +340,8 @@ $especialidades_url = esc_url(home_url('/especialidades'));
                             <?php endif; ?>
                             <p><?php echo get_the_excerpt(); ?></p>
                             <div class="team-social-links">
-                                <a href="https://www.instagram.com/daherclinica/" target="_blank" class="social-icon"><i class="fab fa-instagram"></i></a>
-                                <a href="https://wa.me/<?php echo $whatsapp_geral; ?>" target="_blank" class="social-icon"><i class="fab fa-whatsapp"></i></a>
+                                <a href="https://www.instagram.com/daherclinica/" target="_blank" class="team-social-btn"><i class="fab fa-instagram"></i></a>
+                                <a href="https://wa.me/<?php echo $whatsapp_geral; ?>" target="_blank" class="team-social-btn"><i class="fab fa-whatsapp"></i></a>
                             </div>
                         </div>
                     </div>
