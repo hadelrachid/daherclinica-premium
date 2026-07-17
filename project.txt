@@ -52,7 +52,6 @@
 │   └── 🐘 sobre.php
 ├── 📄 .gitignore
 ├── 🐘 comments.php
-├── 📄 daherclinica-premium.zip
 ├── 🐘 footer.php
 ├── 🐘 front-page.php
 ├── 🐘 functions.php

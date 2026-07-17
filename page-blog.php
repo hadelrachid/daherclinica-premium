@@ -85,10 +85,23 @@ get_header();
                     while ($blog_posts->have_posts()) : $blog_posts->the_post();
                         
                         $categories = get_the_category();
-                        $category_name = !empty($categories) ? $categories[0]->name : 'Bem-estar';
-                        $category_slug = !empty($categories) ? $categories[0]->slug : 'bem-estar';
                         
-                        // Mapeamento para os filtros (ATUALIZADO com Clínica Geral)
+                        // Determina o nome para exibição na badge (ignora 'Sem categoria' ou 'Todos' se possível)
+                        $category_name = 'Bem-estar';
+                        if (!empty($categories)) {
+                            foreach ($categories as $cat) {
+                                if (strtolower($cat->name) !== 'todos' && strtolower($cat->name) !== 'sem categoria') {
+                                    $category_name = $cat->name;
+                                    break;
+                                }
+                            }
+                            // Fallback caso todas sejam "Todos"
+                            if ($category_name === 'Bem-estar' && !empty($categories[0])) {
+                                $category_name = $categories[0]->name;
+                            }
+                        }
+
+                        // Mapeamento para os filtros
                         $filter_map = array(
                             'vascular' => 'vascular',
                             'cirurgia-vascular' => 'vascular',
@@ -98,14 +111,28 @@ get_header();
                             'bem-estar' => 'bem-estar',
                             'saude' => 'bem-estar'
                         );
-                        $filter_cat = isset($filter_map[$category_slug]) ? $filter_map[$category_slug] : 'bem-estar';
+                        
+                        $filter_cats = array();
+                        if (!empty($categories)) {
+                            foreach ($categories as $cat) {
+                                if (isset($filter_map[$cat->slug])) {
+                                    $filter_cats[] = $filter_map[$cat->slug];
+                                }
+                            }
+                        }
+                        
+                        if (empty($filter_cats)) {
+                            $filter_cats[] = 'bem-estar';
+                        }
+                        
+                        $filter_cat_string = implode(' ', array_unique($filter_cats));
                         
                         // Tempo de leitura
                         $word_count = str_word_count(strip_tags(get_the_content()));
                         $reading_time = max(1, ceil($word_count / 200));
                 ?>
                 
-                <article class="post-card" data-category="<?php echo esc_attr($filter_cat); ?>">
+                <article class="post-card" data-category="<?php echo esc_attr($filter_cat_string); ?>">
                     <a href="<?php the_permalink(); ?>" class="post-image-link">
                         <div class="post-image">
                             <?php if (has_post_thumbnail()) : ?>

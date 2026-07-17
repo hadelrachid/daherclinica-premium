@@ -43,7 +43,8 @@
 
                 let visibleCount = 0;
                 posts.forEach(post => {
-                    if (filter === 'all' || post.getAttribute('data-category') === filter) {
+                    const postCats = (post.getAttribute('data-category') || '').split(' ');
+                    if (filter === 'all' || postCats.includes(filter)) {
                         post.style.display = 'block';
                         visibleCount++;
                         setTimeout(() => {
